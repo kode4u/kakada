@@ -17,7 +17,7 @@ class CommitteeCorrectController extends Controller
                 ->when(Request::input('search'), function ($query, $search) {
                     $query->where('name', 'like', '%' . $search . '%');
                     // ->OrWhere('gender', 'like', '%' . $search . '%');
-                })->paginate(50)
+                })->distinct()->paginate(50)
                 ->withQueryString(),
             'filters' => Request::only(['search'])
         ]);
