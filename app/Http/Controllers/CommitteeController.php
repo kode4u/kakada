@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
-use DB;
+use App\Models\Committee;
 use Request;
 use Inertia\Inertia;
 
-class TeacherController extends Controller
+class CommitteeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Teacher', [
-            'items' => Teacher::query()
+        return Inertia::render('Committee', [
+            'items' => Committee::query()
                 ->when(Request::input('search'), function ($query, $search) {
-                    $query->where('name', 'like', '%' . $search . '%')
-                        ->OrWhere('gender', 'like', '%' . $search . '%');
-                })->paginate(6)
+                    $query->where('name', 'like', '%' . $search . '%');
+                    // ->OrWhere('gender', 'like', '%' . $search . '%');
+                })->paginate(50)
                 ->withQueryString(),
             'filters' => Request::only(['search'])
         ]);
