@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Committee2Controller;
 use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\CommitteeController2;
+use App\Http\Controllers\CommitteeCorrectController;
+use App\Http\Controllers\CommitteeExamController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -41,8 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/test', [TestController::class, 'index'])->name('test');
-    Route::get('/committee', [CommitteeController::class, 'index'])->name('committee');
-    Route::get('/committee2', [CommitteeController2::class, 'index'])->name('committee2');
+    Route::get('/committee_exam', [CommitteeExamController::class, 'index'])->name('committee_exam');
+    Route::get('/committee_correct', [CommitteeCorrectController::class, 'index'])->name('committee_correct');
     Route::get('/student', [StudentController::class, 'index'])->name('student');
 
 });

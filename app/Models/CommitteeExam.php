@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Committee extends Model
+class CommitteeExam extends Model
 {
     use HasFactory;
-    protected $table_name = 'committees';
+    protected $table_name = 'committee_exams';
     use HasFactory;
     protected $fillable = [
         'name',

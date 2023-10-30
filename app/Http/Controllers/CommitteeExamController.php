@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Committee;
-use App\Models\Committee2;
+use App\Models\CommitteeExam;
 use Request;
 
-class CommitteeController2 extends Controller
+class CommitteeExamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return \Inertia\Inertia::render('Committee2', [
-            'items' => Committee2::query()
+        return \Inertia\Inertia::render('CommitteeExam', [
+            'items' => CommitteeExam::query()
                 ->when(Request::input('search'), function ($query, $search) {
                     $query->where('name', 'like', '%' . $search . '%');
                     // ->OrWhere('gender', 'like', '%' . $search . '%');

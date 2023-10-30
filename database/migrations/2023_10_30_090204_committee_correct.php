@@ -5,12 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('committee2s', function (Blueprint $table) {
+        Schema::create('committee_correct', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
             $table->date('dob')->nullable();
@@ -27,7 +24,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('committee2s');
+        Schema::dropIfExists('committee_correct');
 
     }
 };

@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Committee;
+use App\Models\CommitteeCorrect;
 use Request;
-use Inertia\Inertia;
 
-class CommitteeController extends Controller
+class CommitteeCorrectController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Committee', [
-            'items' => Committee::query()
+        return \Inertia\Inertia::render('CommitteeCorrect', [
+            'items' => CommitteeCorrect::query()
                 ->when(Request::input('search'), function ($query, $search) {
                     $query->where('name', 'like', '%' . $search . '%');
                     // ->OrWhere('gender', 'like', '%' . $search . '%');
