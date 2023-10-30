@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Committee2 extends Model
 {
     use HasFactory;
-    protected $table_name = 'committees2';
+    protected $table_name = 'committee2';
     use HasFactory;
     protected $fillable = [
         'name',

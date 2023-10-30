@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('committees2', function (Blueprint $table) {
+        Schema::create('committee2s', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
             $table->date('dob')->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('committees2');
+        Schema::dropIfExists('committee2s');
 
     }
 };
