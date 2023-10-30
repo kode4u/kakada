@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('committees2', function (Blueprint $table) {
+        Schema::create('committees', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
             $table->date('dob')->nullable();
