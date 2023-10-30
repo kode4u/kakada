@@ -15,12 +15,16 @@ import { Head } from "@inertiajs/vue3";
         <a
           class="inline-block px-4 py-2 text-gray-700 hover:text-black"
           href="/committee"
-          >មេប្រយោគ</a
+          >មេប្រយោគប្រឡង</a
         >
-
+        <a
+          class="inline-block px-4 py-2 text-gray-700 hover:text-black"
+          href="/committee2"
+          >មេប្រយោគកំណែ</a
+        >
         <!-- active -->
         <a
-          class="inline-block px-4 py-2 border-b-2 border-indigo-600 text-indigo-600 font-semibold"
+          class="inline-block px-4 py-2 text-gray-700 hover:text-black"
           href="/student"
           >សិស្ស</a
         >
