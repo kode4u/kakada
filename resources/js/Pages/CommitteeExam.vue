@@ -15,7 +15,7 @@ let search = ref("");
 watch(search, (value) => {
   console.log(value);
   router.get(
-    "/committee",
+    "/committee_exam",
     { search: value },
     {
       preserveState: true,
