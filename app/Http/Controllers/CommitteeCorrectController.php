@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CommitteeCorrect;
-use Request;
+use Illuminate\Support\Facades\Request;
 
 class CommitteeCorrectController extends Controller
 {
