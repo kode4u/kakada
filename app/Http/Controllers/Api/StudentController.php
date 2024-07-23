@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Support\Facades\Request;
-use Inertia\Inertia;
 
 class StudentController extends Controller
 {
