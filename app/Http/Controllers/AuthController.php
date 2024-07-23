@@ -35,6 +35,7 @@ class AuthController extends Controller
     {
         // Get all input data directly
         $data = $request->all();
+        dd($data);
 
         // Validate input data
         $request->validate([
