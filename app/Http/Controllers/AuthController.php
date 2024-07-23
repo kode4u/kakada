@@ -36,26 +36,26 @@ class AuthController extends Controller
         // Get all input data directly
         $data = $request->all();
 
-        return response()->json($data);
+        // return response()->json($data);
 
-        // // Validate input data
-        // $request->validate([
-        //     'email' => 'required|string|email',
-        //     'password' => 'required|string',
-        // ]);
+        // Validate input data
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
 
-        // // Check credentials
-        // $user = User::where('email', $data['email'])->first();
+        // Check credentials
+        $user = User::where('email', $data['email'])->first();
 
-        // if (!$user || !Hash::check($data['password'], $user->password)) {
-        //     throw ValidationException::withMessages([
-        //         'email' => ['The provided credentials are incorrect.'],
-        //     ]);
-        // }
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+        }
 
-        // // Create token
-        // $token = $user->createToken('auth_token')->plainTextToken;
+        // Create token
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-        // return response()->json(['access_token' => $token, 'token_type' => 'Bearer']);
+        return response()->json(['access_token' => $token, 'token_type' => 'Bearer']);
     }
 }
