@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('/students', StudentController::class);
-    Route::apiResource('/checks', CheckController::class);
-    Route::apiResource('/categorys', CheckCategoryController::class);
+    Route::post('/student', [StudentController::class, 'index']);
+    Route::apiResource('/check', CheckController::class);
+    Route::apiResource('/category', CheckCategoryController::class);
     // Add other student-related routes here
 });
