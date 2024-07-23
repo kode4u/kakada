@@ -1,8 +1,8 @@
 ###
 
 POST https://exam.kode4u.tech/api/check HTTP/1.1
-content-type: application/json
-Authorization: Basic 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+Content-Type: application/json
+Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
 
 {
     "email": "engtitya@outlook.com",
