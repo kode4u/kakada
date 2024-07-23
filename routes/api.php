@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\CheckController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\StudentController;
-use App\Http\Controllers\CheckCategoryController;
+use App\Http\Controllers\Api\CheckCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
