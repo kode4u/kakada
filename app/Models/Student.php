@@ -15,7 +15,6 @@ class Student extends Model
         'id',
         'candid',
         'name',
-        'gender',
         'dob',
         'fathername',
         'mothername',

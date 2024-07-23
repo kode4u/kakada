@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->string('candid')->nullable();
             $table->string('name')->nullable();
-            $table->string('gender')->nullable();
             $table->date('dob')->nullable();
             $table->string('fathername')->nullable();
             $table->string('mothername')->nullable();
