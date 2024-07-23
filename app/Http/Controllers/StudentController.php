@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
-use Request;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
 class StudentController extends Controller
@@ -11,14 +11,14 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Student', [
+        return response()->json([
             'items' => Student::query()
                 ->when(Request::input('search'), function ($query, $search) {
                     $query->where('name', 'like', '%' . $search . '%');
                     // ->OrWhere('gender', 'like', '%' . $search . '%');
-                })->paginate(50)
+                })->distinct()->paginate(50)
                 ->withQueryString(),
             'filters' => Request::only(['search'])
         ]);
