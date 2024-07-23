@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\StudentController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\CheckCategoryController;
+use App\Http\Controllers\Api\CheckController;
+use App\Http\Controllers\CheckCategoryController;
+use App\Http\Controllers\CheckController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +23,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/student', [StudentController::class, 'index']);
+    Route::apiResource('check', CheckController::class);
+    Route::apiResource('check_category', CheckCategoryController::class);
     // Add other student-related routes here
 });
