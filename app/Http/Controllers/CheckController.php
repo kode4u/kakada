@@ -12,13 +12,36 @@ class CheckController extends Controller
     {
         $query = Check::with(['user', 'category', 'student']);
 
+        // Filter by category_id if present
         if ($request->has('category_id')) {
             $query->where('category_id', $request->input('category_id'));
         }
 
-        $checkTables = $query->get();
-        return response()->json($checkTables);
+        // Filter by correct if specified in the request
+        if ($request->has('correct')) {
+            $query->where('correct', $request->input('correct'));
+        }
+
+        // Paginate results
+        $perPage = $request->input('per_page', 15); // Default to 15 items per page
+        $currentPage = $request->input('page', 1); // Default to the first page
+
+        $checkTables = $query->paginate($perPage, ['*'], 'page', $currentPage);
+
+        // Count records with correct=1 and correct=0
+        $countCorrect = $query->where('correct', 1)->count();
+        $countIncorrect = $query->where('correct', 0)->count();
+
+        return response()->json([
+            'check_tables' => $checkTables,
+            'count_correct' => $countCorrect,
+            'count_incorrect' => $countIncorrect,
+            'current_page' => $checkTables->currentPage(),
+            'total_pages' => $checkTables->lastPage(),
+            'total_items' => $checkTables->total(),
+        ]);
     }
+
 
     public function store(Request $request)
     {
