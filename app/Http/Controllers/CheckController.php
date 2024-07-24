@@ -26,7 +26,7 @@ class CheckController extends Controller
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'student_id' => 'required|exists:students,id',
-            'correct' => 'required|boolean',
+            'correct' => 'required',
         ]);
 
         $checkTable = Check::create($request->all());
@@ -46,7 +46,7 @@ class CheckController extends Controller
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'student_id' => 'required|exists:students,id',
-            'correct' => 'required|boolean',
+            'correct' => 'required',
         ]);
 
         $checkTable = Check::findOrFail($id);

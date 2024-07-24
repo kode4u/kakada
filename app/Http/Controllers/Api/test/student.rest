@@ -1,6 +1,6 @@
 ###
 
-GET https://exam.kode4u.tech/api/students HTTP/1.1
+GET https://exam.kode4u.tech/api/students?search=170411039021121000039 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer 15|dDpDDgbJyYvVgW27Ld8cQRQpwCXXLIWvhRZPptwz80ffd576
 
