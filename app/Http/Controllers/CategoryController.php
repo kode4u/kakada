@@ -18,17 +18,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048', // Adjust validation rules as needed
+            'name' => 'required|string|max:255',
         ]);
 
-        // Handle file upload
-        if ($request->hasFile('name')) {
-            $filePath = $request->file('name')->store('categories');
-        }
-
-        $category = new Category();
-        $category->name = $filePath; // Save the file path in the 'name' column
-        $category->save();
+        $category = Category::create($request->all());
 
         return response()->json($category, Response::HTTP_CREATED);
     }

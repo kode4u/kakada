@@ -1,3 +1,29 @@
-### Test Authentication
-GET https://exam.kode4u.tech/api/user
+### Insert Category
+POST https://exam.kode4u.tech/api/categories
+Content-Type: application/json
+Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+
+{
+    "name": "NUBB"
+}
+
+### List All Categories
+GET https://exam.kode4u.tech/api/categories
+Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+
+### Show a Specific Category
+GET https://exam.kode4u.tech/api/categories/1
+Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+
+### Update a Category
+PUT https://exam.kode4u.tech/api/categories/1
+Content-Type: application/json
+Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+
+{
+    "name": "Updated Category Name"
+}
+
+### Delete a Category
+DELETE https://exam.kode4u.tech/api/categories/1
 Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
