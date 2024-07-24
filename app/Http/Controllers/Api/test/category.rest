@@ -1,9 +1,3 @@
-###
-
-POST https://exam.kode4u.tech/api/category HTTP/1.1
-content-type: application/json
+### Test Authentication
+GET https://exam.kode4u.tech/api/user
 Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
-
-{
-    "name": "NUBB",
-}

@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
