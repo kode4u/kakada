@@ -2,7 +2,7 @@
 
 POST https://exam.kode4u.tech/api/category HTTP/1.1
 content-type: application/json
-Authorization: Bearer 11|ZNY2sq2h7wJ5Wl4f629nVMNSVms0tr5rbvFDQ4sSd46c44c4
+Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
 
 {
     "name": "NUBB",

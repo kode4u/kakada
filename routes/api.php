@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\CheckController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\StudentController;
-use App\Http\Controllers\Api\CheckCategoryController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('/student', [StudentController::class, 'index']);
-    Route::apiResource('/check', [CheckController::class, 'index']);
-    Route::apiResource('/category', [CheckCategoryController::class, 'index']);
-
+    Route::apiResource('students', StudentController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('checks', CheckController::class);
 });

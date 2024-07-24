@@ -1,10 +1,11 @@
-###
-
-POST https://exam.kode4u.tech/api/check HTTP/1.1
-Content-Type: application/json
+### Create a new check
+POST https://exam.kode4u.tech/api/check
 Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+Content-Type: application/json
 
 {
-    "email": "engtitya@outlook.com",
-    "password": "Konsva1!"
+    "correct": 1,
+    "student_id": 123,
+    "user_id": 456,
+    "category_id": 789
 }
