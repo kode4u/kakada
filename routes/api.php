@@ -21,6 +21,6 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('students', StudentController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('checks', CheckController::class);
+    Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('checks', CheckController::class);
 });
