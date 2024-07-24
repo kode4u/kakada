@@ -3,70 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\Check;
+use App\Models\CheckTable;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class CheckController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $checks = Check::all();
-        return response()->json($checks);
+        $query = Check::with(['user', 'category', 'student']);
+
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->input('category_id'));
+        }
+
+        $checkTables = $query->get();
+        return response()->json($checkTables);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'student_id' => 'required|integer',
-            'category_id' => 'required|integer',
-            'user_id' => 'required|integer',
+            'user_id' => 'required|exists:users,id',
+            'category_id' => 'required|exists:categories,id',
+            'student_id' => 'required|exists:students,id',
+            'correct' => 'required|boolean',
         ]);
 
-        $check = Check::create($request->all());
+        $checkTable = Check::create($request->all());
 
-        return response()->json($check, Response::HTTP_CREATED);
+        return response()->json($checkTable, 201);
     }
 
     public function show($id)
     {
-        $check = Check::find($id);
-
-        if (!$check) {
-            return response()->json(['error' => 'Check not found'], Response::HTTP_NOT_FOUND);
-        }
-
-        return response()->json($check);
+        $checkTable = Check::with(['user', 'category', 'student'])->findOrFail($id);
+        return response()->json($checkTable);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'student_id' => 'sometimes|required|integer',
-            'category_id' => 'sometimes|required|integer',
-            'user_id' => 'sometimes|required|integer',
+            'user_id' => 'required|exists:users,id',
+            'category_id' => 'required|exists:categories,id',
+            'student_id' => 'required|exists:students,id',
+            'correct' => 'required|boolean',
         ]);
 
-        $check = Check::find($id);
+        $checkTable = Check::findOrFail($id);
+        $checkTable->update($request->all());
 
-        if (!$check) {
-            return response()->json(['error' => 'Check not found'], Response::HTTP_NOT_FOUND);
-        }
-
-        $check->update($request->all());
-
-        return response()->json($check);
+        return response()->json($checkTable);
     }
 
     public function destroy($id)
     {
-        $check = Check::find($id);
+        $checkTable = Check::findOrFail($id);
+        $checkTable->delete();
 
-        if (!$check) {
-            return response()->json(['error' => 'Check not found'], Response::HTTP_NOT_FOUND);
-        }
-
-        $check->delete();
-
-        return response()->json(['message' => 'Check deleted successfully']);
+        return response()->json(null, 204);
     }
 }

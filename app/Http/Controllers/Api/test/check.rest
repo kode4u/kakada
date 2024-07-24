@@ -1,35 +1,47 @@
-### Create a new check
-POST https://exam.kode4u.tech/api/checks
-Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
-Content-Type: application/json
-
-{
-    "student_id": 1,
-    "user_id": 1,
-    "category_id": 1
-}
-
-
-
-### List all checks
+### Get All CheckTables
 GET https://exam.kode4u.tech/api/checks
-Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+Content-Type: application/json
 
-### Show a specific check
-GET https://exam.kode4u.tech/api/checks/1
-Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+###
 
-### Update a check
-PUT https://exam.kode4u.tech/api/checks/1
-Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+### Get CheckTables by Category ID
+GET https://exam.kode4u.tech/api/checks?category_id=1
+Content-Type: application/json
+
+###
+
+### Create a New CheckTable Entry
+POST https://exam.kode4u.tech/api/checks
 Content-Type: application/json
 
 {
-    "student_id": 1,
-    "user_id": 1,
-    "category_id": 1
+  "user_id": 1,
+  "category_id": 1,
+  "student_id": 1,
+  "correct": true
 }
 
-### Delete a check
+###
+
+### Get a Specific CheckTable Entry
+GET https://exam.kode4u.tech/api/checks/1
+Content-Type: application/json
+
+###
+
+### Update a CheckTable Entry
+PUT https://exam.kode4u.tech/api/checks/1
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "category_id": 1,
+  "student_id": 1,
+  "correct": false
+}
+
+###
+
+### Delete a CheckTable Entry
 DELETE https://exam.kode4u.tech/api/checks/1
-Authorization: Bearer 14|BGgmzkcxXucOnuWZTAUc7imfR4tCVkJBzOLqEBBjebe90790
+Content-Type: application/json
