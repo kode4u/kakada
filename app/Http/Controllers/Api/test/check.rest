@@ -1,6 +1,7 @@
 ### Get All CheckTables
 GET https://exam.kode4u.tech/api/checks
 Content-Type: application/json
+Authorization: Bearer 25|fjutqBPclU6ACj9GucYm1a1SSrobquNRrsLDKt4l9d67215e
 
 ###
 
