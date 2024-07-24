@@ -14,12 +14,13 @@ Content-Type: application/json
 ### Create a New CheckTable Entry
 POST https://exam.kode4u.tech/api/checks
 Content-Type: application/json
+Authorization: Bearer 25|fjutqBPclU6ACj9GucYm1a1SSrobquNRrsLDKt4l9d67215e
 
 {
   "user_id": 1,
   "category_id": 1,
   "student_id": 1,
-  "correct": true
+  "correct": 1
 }
 
 ###

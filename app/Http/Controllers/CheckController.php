@@ -26,13 +26,28 @@ class CheckController extends Controller
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'student_id' => 'required|exists:students,id',
-            'correct' => 'required',
+            'correct' => 'required|integer', // Validate as integer
         ]);
 
-        $checkTable = Check::create($request->all());
+        // Check if the record already exists
+        $checkTable = Check::where('user_id', $request->input('user_id'))
+            ->where('category_id', $request->input('category_id'))
+            ->where('student_id', $request->input('student_id'))
+            ->first();
 
-        return response()->json($checkTable, 201);
+        if ($checkTable) {
+            // Update the existing record
+            $checkTable->update([
+                'correct' => $request->input('correct'),
+            ]);
+        } else {
+            // Create a new record
+            $checkTable = Check::create($request->all());
+        }
+
+        return response()->json($checkTable, 200);
     }
+
 
     public function show($id)
     {
