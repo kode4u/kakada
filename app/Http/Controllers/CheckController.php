@@ -67,7 +67,7 @@ class CheckController extends Controller
 
         // Count records with correct=1 and correct=0 using the cloned query
         $countCorrect = $countQuery->where('correct', 1)->count();
-        $countIncorrect = $countQuery->where('correct', 0)->count();
+        $countIncorrect = $countQuery->count();
 
         return response()->json([
             'check_tables' => $checkTables,
