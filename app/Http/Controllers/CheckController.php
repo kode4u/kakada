@@ -60,9 +60,9 @@ class CheckController extends Controller
         $countQuery = clone $query;
 
         // Count records with correct=1 and correct=0 using the cloned query
-        $countIncorrect = $countQuery->count();
+        $countAll = $countQuery->count();
         $countCorrect = $countQuery->where('correct', 1)->count();
-
+        $countIncorrect = $countAll - $countCorrect;
         // Paginate results
         $perPage = $request->input('per_page', 15); // Default to 15 items per page
         $currentPage = $request->input('page', 1); // Default to the first page
