@@ -51,11 +51,6 @@ class CheckController extends Controller
             $query->where('category_id', $request->input('category_id'));
         }
 
-        // Filter by correct if specified in the request
-        if ($request->has('correct')) {
-            $query->where('correct', $request->input('correct'));
-        }
-
         // Clone the query before paginating
         $countQuery = clone $query;
 
@@ -63,6 +58,13 @@ class CheckController extends Controller
         $countAll = $countQuery->count();
         $countCorrect = $countQuery->where('correct', 1)->count();
         $countIncorrect = $countAll - $countCorrect;
+
+        // Filter by correct if specified in the request
+        if ($request->has('correct')) {
+            $query->where('correct', $request->input('correct'));
+        }
+
+
         // Paginate results
         $perPage = $request->input('per_page', 15); // Default to 15 items per page
         $currentPage = $request->input('page', 1); // Default to the first page
