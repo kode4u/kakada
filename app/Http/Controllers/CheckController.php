@@ -59,15 +59,17 @@ class CheckController extends Controller
         // Clone the query before paginating
         $countQuery = clone $query;
 
+        // Count records with correct=1 and correct=0 using the cloned query
+        $countIncorrect = $countQuery->count();
+        $countCorrect = $countQuery->where('correct', 1)->count();
+
         // Paginate results
         $perPage = $request->input('per_page', 15); // Default to 15 items per page
         $currentPage = $request->input('page', 1); // Default to the first page
 
         $checkTables = $query->paginate($perPage, ['*'], 'page', $currentPage);
 
-        // Count records with correct=1 and correct=0 using the cloned query
-        $countCorrect = $countQuery->where('correct', 1)->count();
-        $countIncorrect = $countQuery->count();
+
 
         return response()->json([
             'check_tables' => $checkTables,
