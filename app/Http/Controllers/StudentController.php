@@ -18,7 +18,7 @@ class StudentController extends Controller
                 ->when(Request::input('search'), function ($query, $search) {
                     $query->where('name', 'like', '%' . $search . '%')
                     ->OrWhere('letternumber', '=', $search)
-                        ->OrWhere('candid', 'like', '%' . $search . '%');
+                        ->OrWhere('candid', '=', $search );
                 })->distinct()->paginate(50)
                 ->withQueryString(),
             'filters' => Request::only(['search'])
