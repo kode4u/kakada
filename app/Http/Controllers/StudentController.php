@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 
 class StudentController extends Controller
@@ -13,15 +14,28 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
+        $search = $request->input('search');
+
+        // Log the search term
+        Log::info("Search Term: " . $search);
+
+        $query = Student::query()
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('candid', '=', $search)
+                        ->orWhere('letternumber', '=', $search)
+                        ->orWhere('name', 'like', '%' . $search . '%');
+                });
+            });
+
+        // Log the raw SQL query for debugging
+        Log::info("SQL Query: " . $query->toSql(), $query->getBindings());
+
+        $students = $query->distinct()->paginate(50)->withQueryString();
+
         return response()->json([
-            'items' => Student::query()
-                ->when(Request::input('search'), function ($query, $search) {
-                    $query->Orwhere('name', 'like', "%" . $search . "%")
-                    ->OrWhere('letternumber', '=', $search)
-                    ->orWhere('candid', '=', $search );
-                })->distinct()->paginate(50)
-                ->withQueryString(),
-            'filters' => Request::only(['search'])
+            'items' => $students,
+            'filters' => $request->only(['search'])
         ]);
     }
 
