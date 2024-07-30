@@ -13,22 +13,15 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-
-        $query = Student::query()
-            ->when($search, function ($query, $search) {
-                $query->where(function ($query) use ($search) {
-                    $query->where('candid', '=', $search)
-                        ->orWhere('letternumber', '=', $search)
-                        ->orWhere('name', 'like', '%' . $search . '%');
-                });
-            });
-
-        $students = $query->distinct()->paginate(50)->withQueryString();
-
         return response()->json([
-            'items' => $students,
-            'filters' => $request->only(['search'])
+            'items' => Student::query()
+                ->when(Request::input('search'), function ($query, $search) {
+                    $query->Where('candid', '=', $search )
+                    ->OrWhere('letternumber', '=', $search)
+                    ->Orwhere('name', 'like', "'%" . $search . "%'");
+                })->distinct()->paginate(50)
+                ->withQueryString(),
+            'filters' => Request::only(['search'])
         ]);
     }
 
