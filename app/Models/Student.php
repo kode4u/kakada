@@ -45,5 +45,6 @@ class Student extends Model
         'pprefixk',
         'provinceks',
         'schoolnamekh',
+        'pob',
     ];
 }
