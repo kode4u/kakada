@@ -14,7 +14,8 @@ class StudentController extends Controller
     public function index(Request $request)
     {
 
-        $search = Request::input('search');
+
+        $search = $request->input('search');
         $query = Student::query();
 
         // Check if search term is numeric
