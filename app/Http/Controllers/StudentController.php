@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Request;
 
 class StudentController extends Controller
@@ -22,7 +23,10 @@ class StudentController extends Controller
                         $query->Where('candid', '=', $search )
                         ->OrWhere('letternumber', '=', $search);
                     })->distinct()->paginate(50)
-                    ->withQueryString(),
+                    ->withQueryString()->map(function ($student) {
+                        $student->dob = Carbon::parse($student->dob)->format('d F Y');
+                        return $student;
+                    }),
                 'filters' => Request::only(['search'])
             ]);
         } else {
@@ -31,7 +35,10 @@ class StudentController extends Controller
                     ->when(Request::input('search'), function ($query, $search) {
                         $query->where('name', 'like', "%" . $search . "%");
                     })->distinct()->paginate(50)
-                    ->withQueryString(),
+                    ->withQueryString()->map(function ($student) {
+                        $student->dob = Carbon::parse($student->dob)->format('d F Y');
+                        return $student;
+                    }),
                 'filters' => Request::only(['search'])
             ]);
         }

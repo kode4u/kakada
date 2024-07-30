@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Student extends Model
 {
@@ -46,4 +47,10 @@ class Student extends Model
         'provinceks',
         'schoolnamekh',
     ];
+
+    public function getDobAttribute($value)
+    {
+        // Use Carbon to format the date
+        return Carbon::parse($value)->format('d F Y'); // Formats as "day month year"
+    }
 }
