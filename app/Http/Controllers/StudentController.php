@@ -13,16 +13,30 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json([
-            'items' => Student::query()
-                ->when(Request::input('search'), function ($query, $search) {
-                    $query->where('name', 'like', '%' . $search . '%')
-                        ->OrWhere('candid', 'like', '%' . $search . '%')
-                        ->OrWhere('letternumber', 'like', '%' . $search . '%');
-                })->distinct()->paginate(50)
-                ->withQueryString(),
-            'filters' => Request::only(['search'])
-        ]);
+
+        // Check if search term is numeric
+        if (is_numeric(Request::input('search'))) {
+            return response()->json([
+                'items' => Student::query()
+                    ->when(Request::input('search'), function ($query, $search) {
+                        $query->Where('candid', '=', $search )
+                        ->OrWhere('letternumber', '=', $search);
+                    })->distinct()->paginate(50)
+                    ->withQueryString(),
+                'filters' => Request::only(['search'])
+            ]);
+        } else {
+            return response()->json([
+                'items' => Student::query()
+                    ->when(Request::input('search'), function ($query, $search) {
+                        $query->where('name', 'like', "%" . $search . "%");
+                    })->distinct()->paginate(50)
+                    ->withQueryString(),
+                'filters' => Request::only(['search'])
+            ]);
+        }
+
+
     }
 
     /**
