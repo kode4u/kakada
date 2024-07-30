@@ -16,9 +16,9 @@ class StudentController extends Controller
         return response()->json([
             'items' => Student::query()
                 ->when(Request::input('search'), function ($query, $search) {
-                    $query->Where('name', 'like', "'%" . $search . "%'");
-                    // ->Orwhere('candid', '=', $search )
-                    // ->OrWhere('letternumber', '=', $search);
+                    $query->Orwhere('name', 'like', "%" . $search . "%")
+                    ->OrWhere('letternumber', '=', $search)
+                    ->orWhere('candid', '=', $search );
                 })->distinct()->paginate(50)
                 ->withQueryString(),
             'filters' => Request::only(['search'])
